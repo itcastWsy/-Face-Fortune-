@@ -196,8 +196,9 @@ onUnmounted(() => {
 
 // 方法
 async function loadFaceApiModels() {
-  // 使用绝对路径，确保在开发和生产环境都能正确加载
-  const MODEL_URL = '/models';
+  // 根据环境动态设置模型路径，确保在开发和生产环境都能正确加载
+  const BASE_URL = import.meta.env.BASE_URL || '/';
+  const MODEL_URL = `${BASE_URL}models`;
   
   // 先尝试加载tiny_face_detector模型，因为这是目前唯一存在的模型
   try {
